@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по подразделениям</title>
+    <link rel="stylesheet" href="{% static '/style/css/mainstyle.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/pages/search.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/table.css' %}">
+
+</head>
+<body>
+	{% block topmenu %}
+	{% include 'rsz_system/navigation.html' %}
+	{% endblock %}
+	<div id="choosefield">
+		<form method = "POST">
+    	    {% csrf_token %}
+			<br>
+			<h3>Поиск подразделения</h3>
+			<label for="choosendivision">Подразделение: </label>
+			<input type="text" id="choosendivision" name="choosendivision">
+			<br>
+			<input type="submit" id="choosebutton" name="choosebutton" value="Найти">
+			<br>
+		</form>
+	</div>
+	<div id="generaltable">
+		<form>
+			<table cellpadding="4">
+				<tr>
+		            <td class="tabletitle info_header" colspan="1" rowspan="5">ID</td>
+    		        <td class="tabletitle info_header" colspan="1" rowspan="5">Подразделение</td>
+            		<td class="tabletitle first_header" colspan="7" rowspan="2">По штату</td>
+	            	<td class="tabletitle second_header" colspan="7" rowspan="2">По списку</td>
+    	        	<td class="tabletitle third_header" colspan="7" rowspan="2">Налицо</td>
+    	        	<td class="tabletitle fourth_header" colspan="6" rowspan="2">Отсутствуют</td>
+        		</tr>
+				<tr></tr>
+				<tr>
+					<td class="tabletitle first" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle second" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle third" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Отпуск</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Стац. лечение</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Амб. лечение</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Наряд</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Командировка</td>
+					<td class="tabletitle fourth" colspan="1" rowspan="3">ВСЕГО</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				{% for i in choosenTable %}
+					<tr class="fields">
+						{% for j in i %}
+							<td> {{ j }} </td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		</form>
+	</div>
+</body>
+</html>

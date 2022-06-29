@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по отсутствующим</title>
+    <link rel="stylesheet" href="{% static '/style/css/mainstyle.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/pages/search.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/table.css' %}">
+</head>
+<body>
+	{% block topmenu %}
+	{% include 'rsz_system/navigation.html' %}
+	{% endblock %}
+	<div id="choosefield">
+		<form method = "POST">
+	        {% csrf_token %}
+			<br>
+			<h3>Поиск записи отсутствия</h3>
+			<label for="choosenname">ФИО: </label>
+			<input type="text" id="choosenname" name="choosenname">
+			<br>
+   	        <input type="submit" id="choosenbutton" name="choosenbutton" value="Найти">
+			<br>
+		</form>
+	</div>
+	<div id="generaltable">
+		<form>
+			<table cellpadding="4">
+				<tr>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">ID</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">ФИО</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Категория</td>
+    		        <td class="tabletitle info_header" colspan="1" rowspan="2">В/звание</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Подразделение</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Причина отсутствия</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Номер приказа</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата убытия</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата прибытия (планируемая)</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата прибытия (фактическая)</td>
+        		</tr>
+				<tr></tr>
+				{% for i in choosenHuman %}
+					<tr class="fields">
+						{% for j in i %}
+							<td> {{ j }} </td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>Аналитика</title>
+    <link rel="stylesheet" href="{% static '/style/css/mainstyle.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/pages/out.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/table.css' %}">
+</head>
+<body>
+	{% block topmenu %}
+	{% include 'rsz_system/navigation.html' %}
+	{% endblock %}
+	<div id="add">
+		<form method = "POST">
+	        {% csrf_token %}
+			<h3>Добавление записи отсутствия</h3>
+			<label for="name">ФИО: </label>
+			<input type="text" id="name" name="name">
+			<br>
+			<label for="mrank">Воинское звание: </label>
+			<select id="mrank" name="mrank">
+				{% for i in listMilRanks %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="rank">Категория: </label>
+			<select id="rank" name="rank">
+				{% for i in listRanks %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="reason">Причина отсутствия:</label>
+			<select id="reason" name="reason">
+				{% for i in listOfReasons %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="datestart">Дата начала отсутствия: </label>
+   	     <input type="date" id="datestart" name="datestart" value="2022-01-01">
+			<br>
+   	     <label for="datestart">Дата выхода:</label>
+   	     <input type="date" id="dateend" name="dateend" value="2022-01-01">
+			<br>
+			<label for="division">Подразделение: </label>
+			<select id="division" name="division">
+				{% for i in divisionList %}
+					<option>{{ i.division }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="numberoforder">Номер приказа: </label>
+			<input type="text" id="numberoforder" name="numberoforder">
+			<br>
+   	     <input type="submit" id="createbutton" name="createbutton" value="Записать">
+		</form>
+	</div>
+	<div id="delete">
+		<form method = "POST">
+	        {% csrf_token %}
+			<br>
+			<h3>Удаление записи отсутствия</h3>
+			<label for="deletename">ФИО: </label>
+			<input type="text" id="deletename" name="deletename">
+			<br>
+			<label for="deletestart">Дата начала отсутствия:</label>
+   	        <input type="date" id="deletestart" name="deletestart" value="2022-01-01">
+			<br>
+   	     <input type="submit" id="deletebutton" name="deletebutton" value="Удалить">
+		</form>
+	</div>
+	<div id="end">
+		<form method = "POST">
+	        {% csrf_token %}
+			<br>
+			<h3>Завершение записи отсутствия</h3>
+			<label for="realendname">ФИО: </label>
+			<input type="text" id="realendname" name="realendname">
+			<br>
+			<label for="realendstart">Дата начала отсутствия:</label>
+   	        <input type="date" id="realendstart" name="realendstart" value="2022-01-01">
+			<br>
+			<label for="realendend">Дата возвращения:</label>
+        	<input type="date" id="realendend" name="realendend" value="2022-01-01">
+			<br>
+   	        <input type="submit" id="realendbutton" name="realendbutton" value="Отметить">
+		</form>
+	</div>
+	<div id="edit">
+		<form method = "POST">
+	        {% csrf_token %}
+			<br>
+			<h3>Изменение записи отсутствия</h3>
+			<label for="editid">ID записи: </label>
+			<input type="number" id="editid" name="editid" min="1">
+			<br>
+			<label for="editname">ФИО: </label>
+			<input type="text" id="editname" name="editname">
+			<br>
+			<label for="editmrank">Воинское звание: </label>
+			<select id="editmrank" name="editmrank">
+				{% for i in listMilRanks %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="editrank">Категория: </label>
+			<select id="editrank" name="editrank">
+				{% for i in listRanks %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="editreason">Причина отсутствия:</label>
+			<select id="editreason" name="editreason">
+				{% for i in listOfReasons %}
+					<option>{{ i }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="editdatestart">Дата начала отсутствия: </label>
+	        <input type="date" id="editdatestart" name="editdatestart" value="2022-01-01">
+			<br>
+	        <label for="datestart">Дата выхода:</label>
+	        <input type="date" id="editdateend" name="editdateend" value="2022-01-01">
+			<br>
+			<label for="editdivision">Подразделение: </label>
+			<select id="editdivision" name="editdivision">
+				{% for i in divisionList %}
+					<option>{{ i.division }}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<label for="editnumberoforder">Номер приказа: </label>
+			<input type="text" id="editnumberoforder" name="editnumberoforder">
+			<br>
+   	        <input type="submit" id="editbutton" name="editbutton" value="Изменить">
+		</form>
+	</div>
+	<div id="errorlabel">
+		<h4>{{ errorlabel }}</h4>
+	</div>
+	<div id="generaltable">
+		<form>
+			<br>
+			<h3>Таблица записей отсутствия</h3>
+			<table>
+				<tr>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">ID</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">ФИО</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Категория</td>
+    		        <td class="tabletitle info_header" colspan="1" rowspan="2">В/звание</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Подразделение</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Причина отсутствия</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Номер приказа</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата убытия</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата прибытия (планируемая)</td>
+		            <td class="tabletitle info_header" colspan="1" rowspan="2">Дата прибытия (фактическая)</td>
+        		</tr>
+				<tr></tr>
+				{% for i in fullOutTable %}
+					<tr class="fields">
+						{% for j in i %}
+							<td> {{ j }} </td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+table {
+    border-collapse: collapse;
+    border: 3px solid grey;
+   }
+
+td {
+    border: 1px solid grey;
+    font-size: 10px;
+}
+
+.vertical {
+    writing-mode: vertical-rl;
+    height: 100px;
+}
+
+.tabletitle {
+    font-weight: bold;
+    text-align: center;
+}
+
+.fields {
+    background: #FFFACD;
+}
+
+.info_header {
+    background: #F0E68C;
+}
+
+.first_header {
+    background: #496E7D;
+}
+
+.first {
+    background: #87CEEB;
+}
+
+.second_header {
+    background: #A85A5A;
+}
+
+.second {
+    background: #F08080;
+}
+
+.third_header {
+    background: #FF8C00;
+}
+
+.third {
+    background: #FFCF8A;
+}
+
+.fourth_header {
+    background: #648464;
+}
+
+.fourth {
+    background: #8FBC8F;
+}

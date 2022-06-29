@@ -1,0 +1,35 @@
+#add {
+    top: 70px;
+    left: 20px;
+    width: 300px;
+}
+
+#delete {
+    top: 400px;
+    left: 20px;
+    width: 300px;
+}
+
+#end {
+    top: 400px;
+    left: 350px;
+    width: 300px;
+}
+
+#edit {
+    top: 70px;
+    left: 350px;
+    width: 300px;
+}
+
+#errorlabel {
+    top: 620px;
+    left: 20px;
+}
+
+#generaltable {
+    top: 650px;
+    left: 20px;
+    width: 1300px;
+    height: 450px;
+}

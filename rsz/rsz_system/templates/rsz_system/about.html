@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>О программе</title>
+    <link rel="stylesheet" href="{% static '/style/css/mainstyle.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/navigation.css' %}">
+</head>
+<body>
+	{% block topmenu %}
+	{% include 'rsz_system/navigation.html' %}
+	{% endblock %}
+</body>
+</html>

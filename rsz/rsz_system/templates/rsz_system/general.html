@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>Подразделения</title>
+    <link rel="stylesheet" href="{% static '/style/css/mainstyle.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/pages/general.css' %}">
+    <link rel="stylesheet" href="{% static '/style/css/table.css' %}">
+</head>
+<body>
+	{% block topmenu %}
+	{% include 'rsz_system/navigation.html' %}
+	{% endblock %}
+	<div id="choosedate">
+		<form method = "POST">
+			{% csrf_token %}
+			<label for="date">Дата: </label>
+	        <input type="date" id="date" name="date" value="2022-01-01">
+			<br>
+			<input type="submit" id="datebutton" name="datebutton" value="Сформировать">
+			<br>
+		</form>
+	</div>
+	<div id="currentdate">
+		<form>
+			<h2>{{ generalDate }}</h2>
+			<br>
+		</form>
+	</div>
+	<div id="add">
+		<form method = "POST">
+	        {% csrf_token %}
+			<h3>Добавление подразделения</h3>
+			<h4>По штату: </h4>
+			<label for="addname">Название: </label>
+			<input type="text" id="addname" name="addname">
+			<br>
+			<label for="addofficer">Офицеры: </label>
+			<input type="number" id="addofficer" name="addofficer" min="0">
+			<br>
+			<label for="addensign">Прапорщики: </label>
+			<input type="number" id="addensign" name="addensign" min="0">
+			<br>
+			<label for="addcontract">В/с к/с: </label>
+			<input type="number" id="addcontract" name="addcontract" min="0">
+			<br>
+			<label for="addsoldier">В/с с/с: </label>
+			<input type="number" id="addsoldier" name="addsoldier" min="0">
+			<br>
+			<label for="addcadet">Курсанты: </label>
+			<input type="number" id="addcadet" name="addcadet" min="0">
+			<br>
+			<label for="addlistener">Слушатели: </label>
+			<input type="number" id="addlistener" name="addlistener" min="0">
+			<br>
+			<label for="addtotal">ВСЕГО: </label>
+			<input type="number" id="addtotal" name="addtotal" min="0">
+			<br>
+			<h4>По списку: </h4>
+			<label for="addsofficer">Офицеры: </label>
+			<input type="number" id="addsofficer" name="addsofficer" min="0">
+			<br>
+			<label for="addsensign">Прапорщики: </label>
+			<input type="number" id="addsensign" name="addsensign" min="0">
+			<br>
+			<label for="addscontract">В/с к/с: </label>
+			<input type="number" id="addscontract" name="addscontract" min="0">
+			<br>
+			<label for="addssoldier">В/с с/с: </label>
+			<input type="number" id="addssoldier" name="addssoldier" min="0">
+			<br>
+			<label for="addscadet">Курсанты: </label>
+			<input type="number" id="addscadet" name="addscadet" min="0">
+			<br>
+			<label for="addslistener">Слушатели: </label>
+			<input type="number" id="addslistener" name="addslistener" min="0">
+			<br>
+			<label for="addstotal">ВСЕГО: </label>
+			<input type="number" id="addstotal" name="addstotal" min="0">
+			<br>
+			<input type="submit" id="addbutton" name="addbutton" value="Добавить">
+			<br>
+		</form>
+	</div>
+	<div id="edit">
+		<form method = "POST">
+	        {% csrf_token %}
+			<h3>Изменение подразделения</h3>
+			<label for="editid">ID подразделения: </label>
+			<input type="number" id="editid" name="editid" min="1">
+			<br>
+			<h4>По штату: </h4>
+			<label for="editname">Название: </label>
+			<input type="text" id="editname" name="editname">
+			<br>
+			<label for="editofficer">Офицеры: </label>
+			<input type="number" id="editofficer" name="editofficer" min="0">
+			<br>
+			<label for="editensign">Прапорщики: </label>
+			<input type="number" id="editensign" name="editensign" min="0">
+			<br>
+			<label for="editcontract">В/с к/с: </label>
+			<input type="number" id="editcontract" name="editcontract" min="0">
+			<br>
+			<label for="editsoldier">В/с с/с: </label>
+			<input type="number" id="editsoldier" name="editsoldier" min="0">
+			<br>
+			<label for="editcadet">Курсанты: </label>
+			<input type="number" id="editcadet" name="editcadet" min="0">
+			<br>
+			<label for="editlistener">Слушатели: </label>
+			<input type="number" id="editlistener" name="editlistener" min="0">
+			<br>
+			<label for="edittotal">ВСЕГО: </label>
+			<input type="number" id="edittotal" name="edittotal" min="0">
+			<br>
+			<h4>По списку: </h4>
+			<label for="editsofficer">Офицеры: </label>
+			<input type="number" id="editsofficer" name="editsofficer" min="0">
+			<br>
+			<label for="editsensign">Прапорщики: </label>
+			<input type="number" id="editsensign" name="editsensign" min="0">
+			<br>
+			<label for="editscontract">В/с к/с: </label>
+			<input type="number" id="editscontract" name="editscontract" min="0">
+			<br>
+			<label for="editssoldier">В/с с/с: </label>
+			<input type="number" id="editssoldier" name="editssoldier" min="0">
+			<br>
+			<label for="editscadet">Курсанты: </label>
+			<input type="number" id="editscadet" name="editscadet" min="0">
+			<br>
+			<label for="editslistener">Слушатели: </label>
+			<input type="number" id="editslistener" name="editslistener" min="0">
+			<br>
+			<label for="editstotal">ВСЕГО: </label>
+			<input type="number" id="editstotal" name="editstotal" min="0">
+			<br>
+			<input type="submit" id="editbutton" name="editbutton" value="Изменить">
+			<br>
+		</form>
+	</div>
+	<div id="delete">
+		<form method = "POST">
+        	{% csrf_token %}
+			<h3>Удаление подразделения</h3>
+			<label for="deleteid">ID подразделения: </label>
+			<input type="number" id="deleteid" name="deleteid">
+			<br>
+   	        <input type="submit" id="deletebutton" name="deletebutton" value="Удалить">
+			<br>
+		</form>
+	</div>
+	<div id="errorlabel">
+		<h4>{{ errorlabel }}</h4>
+	</div>
+	<div id="generaltable">
+		<form>
+			<table cellpadding="4">
+				<tr>
+		            <td class="tabletitle info_header" colspan="1" rowspan="5">ID</td>
+    		        <td class="tabletitle info_header" colspan="1" rowspan="5">Подразделение</td>
+            		<td class="tabletitle first_header" colspan="7" rowspan="2">По штату</td>
+	            	<td class="tabletitle second_header" colspan="7" rowspan="2">По списку</td>
+    	        	<td class="tabletitle third_header" colspan="7" rowspan="2">Налицо</td>
+    	        	<td class="tabletitle fourth_header" colspan="6" rowspan="2">Отсутствуют</td>
+        		</tr>
+				<tr></tr>
+				<tr>
+					<td class="tabletitle first" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle first" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle second" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle second" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle third" colspan="1" rowspan="3">Оф</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">Пр</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">К/с</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">С/с</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">К-ты</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">Сл</td>
+					<td class="tabletitle third" colspan="1" rowspan="3">ВСЕГО</td>
+
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Отпуск</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Стац. лечение</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Амб. лечение</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Наряд</td>
+					<td class="tabletitle fourth vertical" colspan="1" rowspan="3">Командировка</td>
+					<td class="tabletitle fourth" colspan="1" rowspan="3">ВСЕГО</td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				{% for i in generalTable %}
+					<tr class="fields">
+						{% for j in i %}
+							<td> {{ j }} </td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		</form>
+	</div>
+</body>
+</html>

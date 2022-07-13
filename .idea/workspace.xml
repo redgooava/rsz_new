@@ -27,12 +27,13 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/crudapp-main" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Руслан\PycharmProjects\rsz_web\rsz\rsz_system\static\images" />
       <recent name="C:\Users\Руслан\PycharmProjects\rsz_web\rsz\rsz_system\static\style\css" />
       <recent name="C:\Users\Руслан\PycharmProjects\rsz_web\rsz\rsz_system\templates\rsz_system" />
     </key>

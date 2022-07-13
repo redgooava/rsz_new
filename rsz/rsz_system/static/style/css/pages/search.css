@@ -1,10 +1,11 @@
 #choosefield {
     top: 70px;
     left: 20px;
+    width: 300px;
 }
 
 #generaltable {
-    top: 200px;
+    top: 300px;
     left: 20px;
     width: 1300px;
     height: 450px;

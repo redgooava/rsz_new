@@ -13,13 +13,30 @@
 	{% block topmenu %}
 	{% include 'rsz_system/navigation.html' %}
 	{% endblock %}
-	<div id="choosefield">
+	<div id="dateperiod">
+		<form>
+			<h2>{{ datePeriod }}</h2>
+			<br>
+		</form>
+	</div>
+	<div class="borderline" id="choosefield">
 		<form method = "POST">
 	        {% csrf_token %}
-			<br>
 			<h3>Поиск записи отсутствия</h3>
 			<label for="choosenname">ФИО: </label>
 			<input type="text" id="choosenname" name="choosenname">
+			<br>
+			<label for="division">Подразделение: </label>
+			<select id="division" name="division">
+				{% for i in divisionList %}
+					<option>{{ i.division }}</option>
+				{% endfor %}
+			</select>
+			<label for="datestart">Начальная дата периода:</label>
+			<input type="date" id="datestart" name="datestart" value="2022-01-01">
+			<br>
+			<label for="dateend">Конечная дата периода:</label>
+        	<input type="date" id="dateend" name="dateend" value="2022-01-01">
 			<br>
    	        <input type="submit" id="choosenbutton" name="choosenbutton" value="Найти">
 			<br>

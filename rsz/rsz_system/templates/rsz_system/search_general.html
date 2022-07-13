@@ -14,7 +14,7 @@
 	{% block topmenu %}
 	{% include 'rsz_system/navigation.html' %}
 	{% endblock %}
-	<div id="choosefield">
+	<div class="borderline" id="choosefield">
 		<form method = "POST">
     	    {% csrf_token %}
 			<br>
@@ -26,7 +26,7 @@
 			<br>
 		</form>
 	</div>
-	<div id="generaltable">
+	<div class="borderline" id="generaltable">
 		<form>
 			<table cellpadding="4">
 				<tr>

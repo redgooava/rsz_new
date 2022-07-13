@@ -20,15 +20,15 @@
 		</form>
 	</div>
 	<div id="choosedate">
-		<input type="submit" id="tablebutton" name="tablebutton" value="Сформировать">
-		<br>
-		<input type="submit" id="docbutton" name="docbutton" value="Сформировать файл">
+		<form method="POST">
+        	{% csrf_token %}
+			<input type="submit" id="docbutton" name="docbutton" value="Сформировать файл">
+		</form>
 	</div>
 	<div id="generaltable">
 			<form>
 				<table cellpadding="4">
 					<tr>
-		        	    <td class="tabletitle info_header" colspan="1" rowspan="5">ID</td>
     		        	<td class="tabletitle info_header" colspan="1" rowspan="5">Подразделение</td>
             			<td class="tabletitle first_header" colspan="7" rowspan="2">По штату</td>
 	           		 	<td class="tabletitle second_header" colspan="7" rowspan="2">По списку</td>

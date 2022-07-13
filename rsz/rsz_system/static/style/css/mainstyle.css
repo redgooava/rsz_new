@@ -4,3 +4,13 @@ input {
 div {
     position: absolute;
 }
+
+.borderline {
+    border-style: solid;
+    border-width: 3px;
+    border-color: #2E8B57;
+}
+
+body {
+    background-image: url("../../images/background.png");
+}

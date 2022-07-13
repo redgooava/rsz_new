@@ -3,6 +3,7 @@ import datetime as dt
 from datetime import datetime
 from .models import Divisiontable
 from .actions import rankIsOut, reasonOfOut
+from .export import main as exportMain
 
 
 def general(request):
@@ -15,7 +16,7 @@ def general(request):
         delete(request)
         generalTable, gDate = table(request, Divisiontable.objects.values())
         generalDate = dt.datetime.strptime(str(gDate), '%Y-%m-%d').strftime('%d.%m.%Y')
-    except ValueError as e:
+    except ValueError:
         errorlabel = 'Ошибка в заполнении формы. ' \
                      'Возможно, вы оставили пустое поле или заполнили форму непредусмотренным значением'
         generalDate = ''
@@ -157,8 +158,30 @@ def delete(request):
 def main(request):
     generalTable, gDate = table(request, Divisiontable.objects.values())
     generalDate = dt.datetime.strptime(str(gDate), '%Y-%m-%d').strftime('%d.%m.%Y')
+
+    finalTable = []
+    tempList = []
+
+    for i in range(len(generalTable)):  # удаление поля (столбец) ID
+        for j in range(len(generalTable[0]) - 1):
+            tempList.append(generalTable[i][j + 1])
+        finalTable.append(tempList)
+        tempList = []
+
+    total = ['ИТОГО']
+
+    for j in range(1, len(finalTable[0])):
+        print(j)
+        sum = 0
+        for i in range(len(finalTable)):
+            sum += finalTable[i][j]
+        total.append(sum)
+
+    finalTable.append(total)
+
+    exportMain(request, finalTable)
     context = {
-        'generalTable': generalTable,
+        'generalTable': finalTable,
         'generalDate': generalDate,
     }
     return context

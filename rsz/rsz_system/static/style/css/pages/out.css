@@ -2,24 +2,28 @@
     top: 70px;
     left: 20px;
     width: 300px;
+    height: 320px;
 }
 
 #delete {
     top: 400px;
     left: 20px;
     width: 300px;
+    height: 200px;
 }
 
 #end {
     top: 400px;
     left: 350px;
     width: 300px;
+    height: 200px;
 }
 
 #edit {
     top: 70px;
     left: 350px;
     width: 300px;
+    height: 320px;
 }
 
 #errorlabel {

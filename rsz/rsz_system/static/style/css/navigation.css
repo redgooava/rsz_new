@@ -1,7 +1,7 @@
 /* https://www.internet-technologies.ru/articles/sozdaem-vypadayuschee-menyu-na-chistom-css.html */
 
 nav {
-    background-color: #E64A19;
+    background-color: #2E8B57;
     z-index: 10;
 	}
 nav ul {
@@ -13,7 +13,7 @@ nav ul {
 nav ul li {
     margin: 0px -7px 0 0;
     display:inline-block;
-    background-color: #E64A19;
+    background-color: #2E8B57;
     }
 nav a {
     display:block;

@@ -1,4 +1,6 @@
 import datetime as dt
+from datetime import datetime as dt_
+from datetime import date
 
 from .models import Divisiontable, Outtable
 from .collection import listOfMilitaryRanks, listOfReasons, listOfRanks
@@ -15,7 +17,7 @@ def out(request):
         returning(request)
         fullOutTable = table(Outtable.objects.all())
         edit(request)
-    except ValueError as e:
+    except ValueError:
         errorlabel = 'Ошибка в заполнении формы. ' \
                      'Возможно, вы оставили пустое поле или заполнили форму непредусмотренным значением'
 
@@ -119,8 +121,22 @@ def edit(request):
 
 
 def search(request):
-    choosenHuman = table(Outtable.objects.filter(name__exact=request.POST.get('choosenname')).values())
+    queryset1 = Outtable.objects.filter(name__exact=request.POST.get('choosenname', ' '),
+                                                 subdivision__exact=request.POST.get('division', ' '),
+                                                 datestart__gte=request.POST.get('datestart', date(2022, 1, 1)),
+                                                 datestart__lte=request.POST.get('dateend', date(2022, 1, 1)))
+
+    queryset2 = Outtable.objects.filter(name__exact=request.POST.get('choosenname', ' '),
+                                                 subdivision__exact=request.POST.get('division', ' '),
+                                                 dateend__gte=request.POST.get('datestart', date(2022, 1, 1)),
+                                                 dateend__lte=request.POST.get('dateend', date(2022, 1, 1)))
+
+    querysetUnion = queryset1.union(queryset2)
+
+    choosenHuman = table(querysetUnion.values())
+
     context = {
         'choosenHuman': choosenHuman,
+        'divisionList': getDivisionList(Divisiontable.objects.all()),
     }
     return context
